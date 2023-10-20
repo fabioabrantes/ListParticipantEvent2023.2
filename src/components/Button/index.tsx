@@ -6,12 +6,15 @@ import {
 
 import {styles} from './styles';
 
-
-export function Button(){
+interface Props extends TouchableOpacityProps{
+  title:string;
+}
+export function Button({title, ...rest}:Props){
+  const backgroundColorButton = title ==='+'? '#31CF67': '#E23C44';
   
   return (
-     <TouchableOpacity style={styles.button}>
-          <Text style={styles.textButton}>+</Text>
+     <TouchableOpacity style={[styles.button,{backgroundColor:backgroundColorButton}]} {...rest}>
+          <Text style={styles.textButton}>{title}</Text>
       </TouchableOpacity>
   )
 }
