@@ -7,12 +7,31 @@ import { Button } from '../../components/Button';
 import {styles} from './styles';
 
 export function Home(){
+ const [nameParticipant,setNameParticipant] = useState('');
+ const [names,setNames] = useState([] as string []);
+
+ 
+ console.log(names)
  
   function addParticipant(){
-   
-  }
+    if(names.includes(nameParticipant) || nameParticipant === ''){
+      Alert.alert('Error','Participate ja existe ou não foi digitado');
+    } else{
+      setNames([...names,nameParticipant]);
+    }
+    setNameParticipant('');
+    }
   function removeParticipant(name:string){
-    
+    Alert.alert('Remove', `Deseja realmente remover ${name}`,[
+      {
+        text:'sim',
+        onPress:()=>{
+          setNames(names.filter(participant => participant !==name))
+        }
+      },{
+        text:'não'
+      } 
+    ])
   }
 
   return (
@@ -22,18 +41,42 @@ export function Home(){
       <Text style={styles.date}>Sexta, 4 de Novembro de 2022.</Text>
 
       <View style={styles.containerRegisterParticipant}>
-        <TextInput />
-        <Button title="+"/>
+        <TextInput 
+          style={styles.input}
+          placeholder='Nome do participante'
+          placeholderTextColor='#FDFCFE'
+          onChangeText={text =>setNameParticipant(text)}
+          value={nameParticipant}
+        />
+        <Button 
+          title="+"
+          onPress={addParticipant}
+        />
       </View>
 
-      <Text  style={styles.subTitleListPaticipant}>Participantes</Text>
+      <Text  style={styles.subTitleListParticipant}>Participantes</Text>
     
       <View style={styles.containerListParticipant}>
-        <Text>Ninguém chegou no evento ainda? 
-          Adicione participantes a sua lista de presença.
-        </Text>
-        <Participant name="fabio"/>
-        <Participant name="jose"/>
+        {
+          names.length === 0 ? (
+            <Text style={styles.listEmpty}>Ninguém chegou no evento ainda? 
+            Adicione participantes a sua lista de presença.
+            </Text>
+          ) : (
+            names.map(item =>(
+              <Participant key={item} name={item} remove={()=>removeParticipant(item)}/>
+            ))
+          )
+        }
+       {/*  <FlatList
+         data={names}
+          keyExtractor={name =>name}
+          renderItem={({item})=>(<Participant name={item}/>)}
+          ListEmptyComponent={()=>(
+            <Text style={styles.listEmpty}>Ninguém chegou no evento ainda? 
+            Adicione participantes a sua lista de presença.
+            </Text>
+          )} */}
       </View>
     </View>
   )
