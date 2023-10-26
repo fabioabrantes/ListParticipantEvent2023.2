@@ -7,13 +7,20 @@ export const styles = StyleSheet.create({
     borderRadius:5,
     marginBottom:10,
     width:'100%',
+    
+  },
+  containerText:{
+    backgroundColor:'#333333',
+    alignItems:'center',
+    flex:1,
+    justifyContent: 'center',
+    height:56,
+    marginHorizontal:5
   },
   nameParticipant:{
-    fontSize:16,
+    fontSize:50,
     color: '#FDFCFE',
     fontWeight:'bold',
-    marginLeft:16,
-    flex:1,
   }
 
 });

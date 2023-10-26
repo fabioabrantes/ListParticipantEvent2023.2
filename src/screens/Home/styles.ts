@@ -42,7 +42,7 @@ export const styles = StyleSheet.create({
   },
   listEmpty:{
     color:'#FDFCFE',
-    fontsize:20,
+    fontSize:20,
     textAlign:'center'
   }
   

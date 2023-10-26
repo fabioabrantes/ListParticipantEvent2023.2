@@ -7,7 +7,6 @@ export const styles = StyleSheet.create({
     height:56,
     alignItems:'center',
     justifyContent: 'center',
-    marginLeft:7,
   },
   textButton:{
     fontSize:24,

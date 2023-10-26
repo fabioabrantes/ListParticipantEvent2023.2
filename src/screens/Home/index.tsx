@@ -20,7 +20,8 @@ export function Home(){
       setNames([...names,nameParticipant]);
     }
     setNameParticipant('');
-    }
+  }
+  
   function removeParticipant(name:string){
     Alert.alert('Remove', `Deseja realmente remover ${name}`,[
       {
