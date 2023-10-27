@@ -1,27 +1,33 @@
-import {
-  TouchableOpacity,
-  TouchableOpacityProps,
-  Text,
-} from 'react-native';
+import { TouchableOpacity,TouchableOpacityProps} from 'react-native';
+import { Ionicons,FontAwesome } from '@expo/vector-icons';
+
 
 import {styles} from './styles';
 
 interface Props extends TouchableOpacityProps{
-  title:string;
-  transparent?:string;
+  iconName:'add-circle-outline' | 'trash-outline' |'check-circle' | 'circle-o';
+  transparent?:boolean;
 }
-export function Button({title,transparent, ...rest}:Props){
+export function Button({iconName,transparent=false, ...rest}:Props){
   let backgroundColorButton = "#8b14f9";
-  if( title ==='+'){
-    backgroundColorButton='#31CF67'
-  }else if( title ==='-' ){
-    backgroundColorButton='#E23C44';
+  if(transparent){
+    backgroundColorButton='#333333'
   }
-
   
   return (
-     <TouchableOpacity style={[styles.button,{backgroundColor:backgroundColorButton, }]} {...rest}>
-          <Text style={styles.textButton}>{title}</Text>
+     <TouchableOpacity 
+        style={[styles.button, !transparent && {backgroundColor:backgroundColorButton}]} {...rest}>
+          {
+            (iconName !== 'circle-o' && iconName !== 'check-circle') ? 
+              <Ionicons name={iconName} size={32} color={iconName==='add-circle-outline' ?'white':'#4EA8DE'} />
+            :
+              <FontAwesome 
+                name={iconName} 
+                size={32} 
+                color="#4EA8DE" 
+                
+                />
+          }
       </TouchableOpacity>
   )
 }

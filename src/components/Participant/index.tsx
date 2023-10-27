@@ -21,13 +21,13 @@ export function Participant({name,remove}:Props){
 
   return (
     <View style={styles.container}>
-      <Button title='ok' transparent='transparent'  onPress={handleCeckout}/>
-      <View 
-        style={[styles.containerText, checkout && { backgroundColor:'#1A1A1A'}]}
-      >
+      <Button iconName={!checkout ?'circle-o':'check-circle'} transparent  onPress={handleCeckout}/>
+
+      <View style={[styles.containerText, checkout && { backgroundColor:'#1A1A1A'}]}>
         <Text style={[styles.nameParticipant, checkout && {textDecorationLine:'line-through',color:'red'}]}>{name}</Text>
       </View>
-      <Button title='-'  onPress={()=>remove(name)}/>
+
+      <Button iconName='trash-outline' transparent onPress={()=>remove(name)}/>
     </View>
   )
 }

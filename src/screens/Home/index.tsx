@@ -50,7 +50,7 @@ export function Home(){
           value={nameParticipant}
         />
         <Button 
-          title="+"
+          iconName="add-circle-outline"
           onPress={addParticipant}
         />
       </View>
